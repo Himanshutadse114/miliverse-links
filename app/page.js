@@ -1,12 +1,14 @@
 import Image from 'next/image';
-import { getLinks } from '../lib/store';
+import seedLinks from '../data/links.json';
+import LinksClient from './LinksClient';
+import { sortLinks } from '../lib/links';
 
 export const dynamic = 'force-dynamic';
 
 const FLOATIES = ['💗', '✨', '🌸', '💕', '🎀', '⭐', '🌷', '💖'];
 
-export default async function Home() {
-  const links = await getLinks();
+export default function Home() {
+  const initial = sortLinks(seedLinks);
 
   return (
     <main className="page">
@@ -40,42 +42,7 @@ export default async function Home() {
           </a>
         </header>
 
-        <section className="links">
-          {links.length === 0 && (
-            <p className="empty">new finds dropping soon… stay tuned 🎀</p>
-          )}
-          {links.map((l) => (
-            <article key={l.id} className="link-card">
-              <div className="link-emoji">{l.emoji || '💗'}</div>
-              <div className="link-body">
-                <h2 className="link-title">{l.title}</h2>
-                {l.price ? <span className="price-pill">{l.price}</span> : null}
-                <div className="link-btns">
-                  {l.affiliateUrl ? (
-                    <a
-                      className="btn-shop"
-                      href={l.affiliateUrl}
-                      target="_blank"
-                      rel="noopener noreferrer sponsored"
-                    >
-                      🛍️ Shop on Meesho
-                    </a>
-                  ) : null}
-                  {l.reelUrl ? (
-                    <a
-                      className="btn-reel"
-                      href={l.reelUrl}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                    >
-                      🎬 Watch reel
-                    </a>
-                  ) : null}
-                </div>
-              </div>
-            </article>
-          ))}
-        </section>
+        <LinksClient initialLinks={initial} />
 
         <footer className="footer">
           <p>made with 💗 by Mili</p>
