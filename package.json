@@ -1,1 +1,16 @@
-{"dependencies":{"@vercel/kv":"^1.0.1","next":"14.2.18","react":"^18.3.1","react-dom":"^18.3.1"},"description":"Mili's cute link-in-bio page for Meesho affiliate finds, with an admin panel.","name":"miliverse-links","private":true,"scripts":{"build":"next build","dev":"next dev","start":"next start"},"version":"1.0.0"}
+{
+  "dependencies": {
+    "next": "14.2.18",
+    "react": "^18.3.1",
+    "react-dom": "^18.3.1"
+  },
+  "description": "Mili's cute link-in-bio page for Meesho affiliate finds, with an admin panel.",
+  "name": "miliverse-links",
+  "private": true,
+  "scripts": {
+    "build": "next build",
+    "dev": "next dev",
+    "start": "next start"
+  },
+  "version": "1.0.0"
+}
